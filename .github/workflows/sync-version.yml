@@ -65,8 +65,8 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+          git config user.name "froala-travis-bot"
+          git config user.email "froala_git_travis_bot@idera.com"
 
           git add lib/froala-editor-sdk/version.rb wysiwyg-editor-ruby-sdk.gemspec
 
@@ -83,7 +83,7 @@ jobs:
             echo "No commits between $BRANCH and master. Skipping PR creation."
             exit 0
           fi
-          PR_BODY=$(printf "## Release Notes (from primary repo)\n\n%s\n" "$RELEASE_NOTES")
+          PR_BODY=$(printf "%s\n" "$RELEASE_NOTES")
           gh pr create \
             --base master \
             --head "$BRANCH" \
