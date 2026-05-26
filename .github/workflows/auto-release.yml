@@ -55,7 +55,6 @@ jobs:
       - name: Create GitHub Release
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
-          RELEASE_NOTES: ${{ github.event.pull_request.body }}
         run: |
           if gh release view "v${VERSION}" >/dev/null 2>&1; then
             echo "Release v${VERSION} already exists. Skipping."
@@ -63,5 +62,5 @@ jobs:
           fi
           gh release create "v${VERSION}" \
             --title "Release ${VERSION}" \
-            --notes "$RELEASE_NOTES" \
+            --notes "Release v${VERSION}" \
             --latest
